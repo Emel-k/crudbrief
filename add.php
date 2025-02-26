@@ -14,12 +14,12 @@ if($_SERVER ['REQUEST_METHOD'] === 'POST') {
 
     //vérifie que le champ n'est pas vide
 
-    if ($nom !== '' || $prix !== '' || $stock !== '') {
+    if ($nom !== '' && $prix !== '' && $stock !== '' && $id !== null) {
         //Stockage de la session
 
         $_SESSION['message'] = "Vous avez ajouté un produit " . $nom;
 
-        $stmt = $pdo->prepare('INSERT INTO produits (id, nom, prix, stock) values(NULL,?,?,?);)');
+        $stmt = $pdo->prepare('INSERT INTO produits (id, nom, prix, stock) values(NULL,?,?,?)');
          $stmt->execute([$nom, $prix, $stock]);
 
 // Stockage des informations nom, email, message dans la session pour les récupérer plus tard
